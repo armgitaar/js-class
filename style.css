@@ -1,0 +1,53 @@
+body {
+	font-family: 'Roboto';
+	font-weight: 300;
+}
+hr {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	border: 1px solid rgba(0, 0, 255, 0.3);
+}
+.glyphicon {color: #00f;}
+
+/*-- Contact --*/
+.contact { margin-bottom: 30px; }
+.contact button { margin-top: 15px; }
+
+/*-- Entry --*/
+.entry {
+	padding: 15px 5%;
+	border-radius: 2px;
+	box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
+	margin-top: 30px;
+}
+.entry li { font-size: 1.5em; }
+
+/*-- Navbar --*/
+.navbar {margin-bottom: 0px;}
+.navbar-brand {
+	padding: 8px 10px;
+}
+.btn.btn-primary.navbar-btn {
+	margin-left: 15px;
+}
+
+/*-- Skills --*/
+.skills { margin-top: 30px; }
+.skills ul { margin-top: 15px; }
+.skills li {
+	background-color: #00f;
+	color: #fff;
+	font-size: 2em;
+	border-radius: 8px;
+	padding: 10px 20px;
+	margin: 5px 10px;
+}
+
+/*-- Summary --*/
+.summary {	
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding-top: 10%;
+	padding-bottom: 15%;
+}
+.summary .col-md-5 { background-color: rgba(255, 255, 255, 0.5); }
