@@ -48,6 +48,11 @@ for(var i=0; i<resumeData.skills.length; i++) {
 	var skillsListItem = document.createElement('li');
 	skillsListItem.innerHTML = resumeData.skills[i];
 	skillsList.appendChild(skillsListItem);
+
+	if((i + 1) % 3 === 0) {
+		var brElem = document.createElement('br'); 
+		skillsList.appendChild(brElem);
+	}
 }
 /*------------ END Skills ------------*/
 
