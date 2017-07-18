@@ -1,43 +1,63 @@
 /*------------ BEGIN Summary ------------*/
-document.getElementById('summary').setAttribute('style', 'background-image: url('+resumeData.summary.background+')');
 
-var profilePic = document.createElement('img');
-profilePic.setAttribute('src', resumeData.summary.profilePic);
-document.getElementById('profile-pic').append(profilePic);
+// Run through summary data and spit onto page
+for (var d in resumeData.summary) {
+	switch (d){ 
+		case 'background': 
+			document.getElementById('summary').setAttribute('style', 'background-image: url('+resumeData.summary[d]+')');
+			break; 
 
-// Set full name; middle name optional
-var fullName;
-if (resumeData.summary.middleName.length > 0) {
-	fullName = resumeData.summary.firstName + " " + resumeData.summary.middleName + " " + resumeData.summary.lastName;
-} else {
-	fullName = resumeData.summary.firstName + " " + resumeData.summary.lastName;
+		case 'profilePic': 
+			var profilePic = document.createElement('img');
+			profilePic.setAttribute('src', resumeData.summary[d]);
+			document.getElementById('profile-pic').append(profilePic);
+			break; 
+
+		case 'firstName': 
+			var summaryItem = document.createElement('h1');
+			summaryItem.setAttribute('id', 'full-name');
+			spitText = document.createTextNode(resumeData.summary[d]);
+			summaryItem.appendChild(spitText); 
+			break; 
+
+		case 'middleName':
+			var summaryItem = document.getElementById('full-name');
+			spitText = document.createTextNode(" "+resumeData.summary[d]+" ");
+			summaryItem.appendChild(spitText); 
+			break; 
+
+		case 'lastName': 
+			var summaryItem = document.getElementById('full-name');
+			spitText = document.createTextNode(resumeData.summary[d]);
+			summaryItem.appendChild(spitText);
+			break;
+
+		case 'occupation': 
+			var summaryItem = document.createElement('h2');
+			spitText = document.createTextNode(resumeData.summary[d]);
+			summaryItem.appendChild(spitText); 
+			break; 
+
+		case 'city': 
+			var summaryItem = document.createElement('h3');
+			summaryItem.setAttribute('id', 'location');
+			spitText = document.createTextNode(resumeData.summary[d]);
+			summaryItem.appendChild(spitText); 
+			break; 
+
+		case 'state': 
+			var summaryItem = document.getElementById('location');
+			spitText = document.createTextNode(", "+resumeData.summary[d]);
+			summaryItem.appendChild(spitText); 
+			break; 
+
+		default: 
+			var summaryItem = document.createElement('h3');
+			spitText = document.createTextNode(resumeData.summary[d]);
+			summaryItem.appendChild(spitText); 
+	}
+	if (summaryItem != undefined) {document.getElementById('information').append(summaryItem)};
 }
-
-// Set City, State
-var cityState = resumeData.summary.city + ", " + resumeData.summary.state;
-
-// Steps 1 & 2: Create Elements and Wrap Data in them
-var nameText = document.createTextNode(fullName);
-var titleText = document.createTextNode(resumeData.summary.occupation);
-var locationText = document.createTextNode(cityState);
-var phoneText = document.createTextNode(resumeData.summary.phone);
-var emailText = document.createTextNode(resumeData.summary.email);
-
-// Step 3: Get and/or Create Parent Element(s)
-var summaryName = document.createElement('h1');
-var summaryTitle = document.createElement('h2');
-var summaryLocation = document.createElement('h2');
-var summaryPhone = document.createElement('h3');
-var summaryEmail = document.createElement('h3');
-
-// Step 4: Append Child Elements to Parent Element(s)
-summaryName.appendChild(nameText);
-summaryTitle.appendChild(titleText);
-summaryLocation.appendChild(locationText);
-summaryPhone.appendChild(phoneText);
-summaryEmail.appendChild(emailText);
-
-document.getElementById('information').append(summaryName, summaryTitle, summaryLocation, summaryPhone, summaryEmail);
 /*------------ END Summary ------------*/
 
 
