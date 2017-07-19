@@ -16,8 +16,7 @@ for (var d in resumeData.summary) {
 		case 'firstName': 
 			var summaryItem = document.createElement('h1');
 			summaryItem.setAttribute('id', 'full-name');
-			spitText = document.createTextNode(resumeData.summary[d]);
-			summaryItem.appendChild(spitText); 
+			spits(); 
 			break; 
 
 		case 'middleName':
@@ -28,21 +27,18 @@ for (var d in resumeData.summary) {
 
 		case 'lastName': 
 			var summaryItem = document.getElementById('full-name');
-			spitText = document.createTextNode(resumeData.summary[d]);
-			summaryItem.appendChild(spitText);
+			spits(); 
 			break;
 
 		case 'occupation': 
 			var summaryItem = document.createElement('h2');
-			spitText = document.createTextNode(resumeData.summary[d]);
-			summaryItem.appendChild(spitText); 
+			spits(); 
 			break; 
 
 		case 'city': 
 			var summaryItem = document.createElement('h3');
 			summaryItem.setAttribute('id', 'location');
-			spitText = document.createTextNode(resumeData.summary[d]);
-			summaryItem.appendChild(spitText); 
+			spits(); 
 			break; 
 
 		case 'state': 
@@ -53,9 +49,14 @@ for (var d in resumeData.summary) {
 
 		default: 
 			var summaryItem = document.createElement('h3');
-			spitText = document.createTextNode(resumeData.summary[d]);
-			summaryItem.appendChild(spitText); 
+			spits(); 
 	}
+	
+	function spits() {
+		spitText = document.createTextNode(resumeData.summary[d]);
+		summaryItem.appendChild(spitText); 
+	}
+
 	if (summaryItem != undefined) {document.getElementById('information').append(summaryItem)};
 }
 /*------------ END Summary ------------*/
@@ -84,6 +85,8 @@ spitExperEd(experience);
 spitExperEd(education);
 
 function spitExperEd(value) {
+	var hr = document.createElement('hr');
+
 	if (value == experience) {
 		spit = resumeData.experience;
 		spitAll = experience;  
@@ -119,10 +122,9 @@ function spitExperEd(value) {
 		entry.appendChild(row);
 		spitAll.appendChild(entry);
 	}
+	
+	spitAll.appendChild(hr);
 }
-var hr1 = document.createElement('hr');
-var hr2 = document.createElement('hr');
-experience.appendChild(hr1);
-education.appendChild(hr2);
+
 /*------------ END Experience and Education ------------*/
 
