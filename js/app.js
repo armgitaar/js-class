@@ -1,63 +1,64 @@
 /*------------ BEGIN Summary ------------*/
-
+var resumeItem = "";
+var spitText = "";
 // Run through summary data and spit onto page
 for (var d in resumeData.summary) {
-	switch (d){ 
+	switch (d) { 
 		case 'background': 
 			document.getElementById('summary').setAttribute('style', 'background-image: url('+resumeData.summary[d]+')');
 			break; 
 
 		case 'profilePic': 
-			var profilePic = document.createElement('img');
-			profilePic.setAttribute('src', resumeData.summary[d]);
-			document.getElementById('profile-pic').append(profilePic);
+			createItem('img');
+			resumeItem.setAttribute('src', resumeData.summary[d]);
+			document.getElementById('profile-pic').append(resumeItem);
 			break; 
 
 		case 'firstName': 
-			var summaryItem = document.createElement('h1');
-			summaryItem.setAttribute('id', 'full-name');
+			createItem('h1');
+			resumeItem.setAttribute('id', 'full-name');
 			spits(); 
 			break; 
 
 		case 'middleName':
-			var summaryItem = document.getElementById('full-name');
+			resumeItem = document.getElementById('full-name');
 			spitText = document.createTextNode(" "+resumeData.summary[d]+" ");
-			summaryItem.appendChild(spitText); 
+			resumeItem.appendChild(spitText); 
 			break; 
 
 		case 'lastName': 
-			var summaryItem = document.getElementById('full-name');
+			resumeItem = document.getElementById('full-name');
 			spits(); 
 			break;
 
 		case 'occupation': 
-			var summaryItem = document.createElement('h2');
+			createItem('h2');
 			spits(); 
 			break; 
 
 		case 'city': 
-			var summaryItem = document.createElement('h3');
-			summaryItem.setAttribute('id', 'location');
+			createItem('h3');
+			resumeItem.setAttribute('id', 'location');
 			spits(); 
 			break; 
 
 		case 'state': 
-			var summaryItem = document.getElementById('location');
+			resumeItem = document.getElementById('location');
 			spitText = document.createTextNode(", "+resumeData.summary[d]);
-			summaryItem.appendChild(spitText); 
+			resumeItem.appendChild(spitText); 
 			break; 
 
 		default: 
-			var summaryItem = document.createElement('h3');
+			createItem('h3');
 			spits(); 
 	}
 	
 	function spits() {
 		spitText = document.createTextNode(resumeData.summary[d]);
-		summaryItem.appendChild(spitText); 
+		resumeItem.appendChild(spitText); 
 	}
 
-	if (summaryItem != undefined) {document.getElementById('information').append(summaryItem)};
+	if (resumeItem != undefined) {document.getElementById('information').append(resumeItem)};
 }
 /*------------ END Summary ------------*/
 
@@ -127,4 +128,8 @@ function spitExperEd(value) {
 }
 
 /*------------ END Experience and Education ------------*/
+
+function createItem(type) { 
+	return resumeItem = document.createElement(type);
+}
 
