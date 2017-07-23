@@ -1,119 +1,101 @@
-/*------------ BEGIN Summary ------------*/
 var resumeItem = "";
-var spitText = "";
+
+// Call functions to create resume
+createSummary();
+createSkills();
+createExperEd('experience');
+createExperEd('education');
+
 // Run through summary data and spit onto page
-for (var d in resumeData.summary) {
-	switch (d) { 
-		case 'background': 
-			document.getElementById('summary').setAttribute('style', 'background-image: url('+resumeData.summary[d]+')');
-			break; 
+function createSummary(){
+	for (var d in resumeData.summary) {
+		var resData = resumeData.summary[d];
+		switch (d) { 
+			case 'background': 
+				document.getElementById('summary').setAttribute('style', 'background-image: url('+resData+')');
+				break; 
 
-		case 'profilePic': 
-			createItem('img');
-			resumeItem.setAttribute('src', resumeData.summary[d]);
-			document.getElementById('profile-pic').append(resumeItem);
-			break; 
+			case 'profilePic': 
+				createItem('img').setAttribute('src', resData);
+				document.getElementById('profile-pic').append(resumeItem);
+				resumeItem = undefined; 
+				break; 
 
-		case 'firstName': 
-			createItem('h1');
-			resumeItem.setAttribute('id', 'full-name');
-			spits(); 
-			break; 
+			case 'firstName': 
+				spits(createItem('h1').setAttribute('id', 'full-name'));
+				break; 
 
-		case 'middleName':
-			resumeItem = document.getElementById('full-name');
-			spitText = document.createTextNode(" "+resumeData.summary[d]+" ");
-			resumeItem.appendChild(spitText); 
-			break; 
+			case 'middleName':
+				getItem('full-name').appendChild(document.createTextNode(" "+resData+" ")); 
+				break; 
 
-		case 'lastName': 
-			resumeItem = document.getElementById('full-name');
-			spits(); 
-			break;
+			case 'lastName': 
+				spits(getItem('full-name'));
+				break;
 
-		case 'occupation': 
-			createItem('h2');
-			spits(); 
-			break; 
+			case 'occupation': 
+				spits(createItem('h2'));
+				break; 
 
-		case 'city': 
-			createItem('h3');
-			resumeItem.setAttribute('id', 'location');
-			spits(); 
-			break; 
+			case 'city': 
+				spits(createItem('h3').setAttribute('id', 'location'));
+				break; 
 
-		case 'state': 
-			resumeItem = document.getElementById('location');
-			spitText = document.createTextNode(", "+resumeData.summary[d]);
-			resumeItem.appendChild(spitText); 
-			break; 
+			case 'state': 
+				getItem('location').appendChild(document.createTextNode(", "+resData)); 
+				break; 
 
-		default: 
-			createItem('h3');
-			spits(); 
-	}
-	
-	function spits() {
-		spitText = document.createTextNode(resumeData.summary[d]);
-		resumeItem.appendChild(spitText); 
-	}
+			default: 
+				spits(createItem('h3'));
+		}
+		
+		function spits() {
+			resumeItem.appendChild(document.createTextNode(resData)); 
+		}
 
-	if (resumeItem != undefined) {document.getElementById('information').append(resumeItem)};
-}
-/*------------ END Summary ------------*/
-
-
-/*------------ BEGIN Skills ------------*/
-var skillsList = document.getElementById('skills-list');
-
-for(var i=0; i<resumeData.skills.length; i++) {
-	var skillsListItem = document.createElement('li');
-	skillsListItem.innerHTML = resumeData.skills[i];
-	skillsList.appendChild(skillsListItem);
-
-	if((i + 1) % 3 === 0) {
-		var brElem = document.createElement('br'); 
-		skillsList.appendChild(brElem);
+		if (resumeItem != undefined) {document.getElementById('information').append(resumeItem)};
 	}
 }
-/*------------ END Skills ------------*/
 
-/*------------ BEGIN Experience and Education ------------*/
-var experience = document.getElementById('experience');
-var education = document.getElementById('education');
 
-spitExperEd(experience);
-spitExperEd(education);
 
-function spitExperEd(value) {
-	var hr = document.createElement('hr');
+// Run through skills data and spit onto page
+function createSkills() {
+	listItem = getItem('skills-list');
 
-	if (value == experience) {
-		spit = resumeData.experience;
-		spitAll = experience;  
-	} else {
-		spit = resumeData.education;
-		spitAll = education; 
+	for(var i=0; i<resumeData.skills.length; i++) {
+		createItem('li').innerHTML = resumeData.skills[i];
+		listItem.appendChild(resumeItem);
+
+		if((i + 1) % 3 === 0) {
+			listItem.appendChild(document.createElement('br'));
+		}
 	}
+}
 
-	for(var j=0; j<spit.length; j++) {
-		var entry = document.createElement('div');
-		var row = document.createElement('div');
-		var well = document.createElement('div');
-		var titleAndDates = document.createElement('h1');
-		var organization = document.createElement('h2');
-		var descriptions = document.createElement('ul');
+// Run through experience and education data and spit onto page
+function createExperEd(experType) {
+	hr = createItem('hr');
+	container = getItem(experType);
+	type = eval('resumeData'+'.'+experType);
+
+	for(var j=0; j<type.length; j++) {
+		var entry = createItem('div');
+		var row = createItem('div');
+		var well = createItem('div');
+		var titleAndDates = createItem('h1');
+		var organization = createItem('h2');
+		var descriptions = createItem('ul');
 
 		entry.className = 'entry';
 		row.className = 'row';
 		well.className = 'well';
+		titleAndDates.innerHTML = type[j].title+'<span class="pull-right"><small><em>'+type[j].startYear+' - '+type[j].endYear+'</em></small></span>';
+		organization.innerHTML = type[j].organization+"<hr>";
 
-		titleAndDates.innerHTML = spit[j].title+'<span class="pull-right"><small><em>'+spit[j].startYear+' - '+spit[j].endYear+'</em></small></span>';
-		organization.innerHTML = spit[j].organization+"<hr>";
-
-		for(var d=0; d<spit[j].descriptions.length; d++) {
-			var description = document.createElement('li');
-			description.innerHTML = spit[j].descriptions[d];
+		for(var d=0; d<type[j].descriptions.length; d++) {
+			var description = createItem('li');
+			description.innerHTML = type[j].descriptions[d];
 			descriptions.appendChild(description);
 		}
 		well.appendChild(titleAndDates);
@@ -121,15 +103,16 @@ function spitExperEd(value) {
 		well.appendChild(descriptions);
 		row.appendChild(well);
 		entry.appendChild(row);
-		spitAll.appendChild(entry);
+		container.appendChild(entry);
 	}
-	
-	spitAll.appendChild(hr);
+	container.appendChild(hr);
 }
 
-/*------------ END Experience and Education ------------*/
-
+// Helper functions
 function createItem(type) { 
 	return resumeItem = document.createElement(type);
 }
 
+function getItem(item) { 
+	return resumeItem = document.getElementById(item);
+}
