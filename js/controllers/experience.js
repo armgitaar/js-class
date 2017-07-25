@@ -5,6 +5,8 @@
 	createExperEd('experience');
 	createExperEd('education');
 
+	///////////////////////////////////
+
 	// Helper functions
 	function createItem(type) { 
 		return resumeItem = document.createElement(type);
@@ -13,6 +15,8 @@
 	function getItem(item) { 
 		return resumeItem = document.getElementById(item);
 	}
+
+	///////////////////////////////////
 
 	// Run through experience and education data and spit onto page
 	function createExperEd(experType) {

@@ -4,6 +4,8 @@
 	// Call functions to create resume
 	createSummary();
 
+	///////////////////////////////////
+
 	// Helper functions
 	function createItem(type) { 
 		return resumeItem = document.createElement(type);
@@ -12,6 +14,8 @@
 	function getItem(item) { 
 		return resumeItem = document.getElementById(item);
 	}
+
+	///////////////////////////////////
 
 	// Run through summary data and spit onto page
 	function createSummary(){
