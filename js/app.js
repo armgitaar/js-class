@@ -57,8 +57,6 @@ function createSummary(){
 	}
 }
 
-
-
 // Run through skills data and spit onto page
 function createSkills() {
 	listItem = getItem('skills-list');
