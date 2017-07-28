@@ -22,7 +22,7 @@
 	function createExperEd(experType) {
 		hr = createItem('hr');
 		container = getItem(experType);
-		type = eval('resumeData'+'.'+experType);
+		type = eval('myResumeData'+'.'+experType);
 
 		for(var j=0; j<type.length; j++) {
 			var entry = createItem('div');

@@ -1,4 +1,4 @@
-(function() {
+
 	var resumeItem = "";
 
 	// Call functions to create resume
@@ -21,8 +21,8 @@
 	function createSkills() {
 		listItem = getItem('skills-list');
 
-		for(var i=0; i<resumeData.skills.length; i++) {
-			createItem('li').innerHTML = resumeData.skills[i];
+		for(var i=0; i<myResumeData.skills.length; i++) {
+			createItem('li').innerHTML = myResumeData.skills[i];
 			listItem.appendChild(resumeItem);
 
 			if((i + 1) % 3 === 0) {
@@ -30,4 +30,3 @@
 			}
 		}
 	}
-})(); 

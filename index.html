@@ -35,14 +35,15 @@
 	      <div class="row">
 	        <div class="col-md-3 col-md-offset-3" id="profile-pic"></div>
 	        <div class="col-md-5" id="information"></div>
+	        	<button type="button" class="btn btn-major blue" data-toggle="modal" data-target="#experienceModal">Edit</button>        
 	      </div>
 	    </div>
-
 
 		<!-- Skills -->
 	    <div class="container skills" id="skills">
 	      <div class="row text-center">
 	        <h1>Skills</h1>
+	        <button type="button" class="btn btn-major blue" data-toggle="modal" data-target="#skillsModal" id="skills-edit-button">Edit</button>
 	        <ul class="list-unstyled list-inline" id="skills-list"></ul>
 	      </div>
 	      <hr>
@@ -96,12 +97,80 @@
 				</form>
 			</div>
 		</div>
+
+
+
+
+
+
+		<!-- Modals --> 
+
+		<!-- Experience Modal -->
+				<div class="modal fade" id="experienceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							</div>
+							<div class="modal-body">
+								<form id="summary-form">
+									<input type="text" id="summary-first-name">
+									<label for="summary-first-name">First Name</label>
+									<br />
+									<input type="text" id="summary-middle-name">
+									<label for="summary-middle-name">Middle Name</label>
+									<br />	
+									<input type="text" id="summary-last-name">
+									<label for="summary-last-name">Last Name</label>
+									<br />
+									<input type="text" id="summary-title">
+									<label for="summary-title">Title</label>
+									<br />
+									<input type="text" id="summary-location-city">
+									<label for="summary-location-city">City</label>
+									<br />
+									<input type="text" id="summary-location-state">
+									<label for="summary-location-state">State</label>
+									<br />		
+									<input type="text" id="summary-phone">
+									<label for="summary-phone">Phone</label>
+									<br />
+									<input type="email" id="summary-email">
+									<label for="summary-email">Email</label>
+									<br />				        		
+								</form>
+							</div>
+							<button id="update-summary" data-dismiss="modal" aria-label="Close">Update</button>
+						</div>
+					</div>
+				</div>
+
+		<!-- Skills Modal -->
+				<div class="modal fade" id="skillsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							</div>
+							<div class="modal-body">
+								<form id="skills-form">
+								</form>
+							</div>
+							<div id="add-skill" onclick="addSkill()">Add</div>
+							<button id="update-skills" data-dismiss="modal" aria-label="Close">Update</button>
+						</div>
+					</div>
+				</div>
+
+
+
+		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 		<script src="/js/data/data.js"></script>
-		<script src="/js/main.js"></script>
+		<script src="/js/controllers/summary.js"></script>
+		<script src="/js/controllers/summary.edit.js"></script>
 		<script src="/js/controllers/experience.js"></script>
 		<script src="/js/controllers/skills.js"></script>
-		<script src="/js/controllers/summary.js"></script>
-		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+		<script src="/js/controllers/skills.edit.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</body>
 </html>

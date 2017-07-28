@@ -9,7 +9,8 @@ var resumeData = {
 		'city': 'Scranton',
 		'state': 'PA',
 		'phone': '(570) 867 5309',
-		'email': 'mscott@dundlermifflin.com'
+		'email': 'mscott@dundlermifflin.com',
+		'empty': '',
 	},
 	'skills': ['Public Speaking', 'Management', 'Selling', 'Mentorship', "Personal Coaching", 'Song Writing', 'Joke Telling', 'Story Telling', 'Inspiring Others'],
 	'experience': [
@@ -46,3 +47,6 @@ var resumeData = {
 		]
 	}]
 };
+
+localStorage.setItem('added-items', JSON.stringify(resumeData));
+var myResumeData = JSON.parse(localStorage.getItem("added-items"));

@@ -1,4 +1,4 @@
-(function() {
+
 	var resumeItem = "";
 
 	// Call functions to create resume
@@ -18,9 +18,10 @@
 	///////////////////////////////////
 
 	// Run through summary data and spit onto page
-	function createSummary(){
-		for (var d in resumeData.summary) {
-			var resData = resumeData.summary[d];
+	function createSummary(){ 
+		var d = 0; 
+		for (d in myResumeData.summary) {
+			var resData = myResumeData.summary[d];
 			switch (d) { 
 				case 'background': 
 					document.getElementById('summary').setAttribute('style', 'background-image: url('+resData+')');
@@ -58,6 +59,7 @@
 
 				default: 
 					spits(createItem('h3'));
+					break;
 			}
 			
 			function spits() {
@@ -67,4 +69,3 @@
 			if (resumeItem != undefined) {document.getElementById('information').append(resumeItem)};
 		}
 	}
-})(); 
